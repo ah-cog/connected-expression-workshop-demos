@@ -88,7 +88,7 @@ void keyReleased ()
       isCapturingSample = false;
       
       println("Stopped recording.");
- {
+    } else {
       // Create recorder with name equal to the current time formatted like "2015_10_17_12_48_28".
       timestamp = String.valueOf(year()) + "_" + String.valueOf(month()) + "_" + String.valueOf(day()) + "_" + String.valueOf(hour()) + "_" + String.valueOf(minute()) + "_" + String.valueOf(second());
       
