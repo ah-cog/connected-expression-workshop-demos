@@ -25,7 +25,7 @@ int data;       // array to read the 4 values
 
 // Meter
 int dataFloor = 0;
-int dataCeiling = 800;
+int dataCeiling = 400;
 
 void setup() {
   
