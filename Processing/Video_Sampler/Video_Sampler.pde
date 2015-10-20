@@ -10,13 +10,12 @@ ArrayList<String> samples = new ArrayList<String>();
 int currentSample = -1;
 int currentFrame = 0;
 boolean isCapturingSample = false;
-int videoFramesPerSecond = 30;
 
 void setup () {
   
   frame.setTitle ("Video Sampler");
   size (640, 480); // size (640, 320, P3D);
-  frameRate (videoFramesPerSecond);
+  frameRate (30);
 
   String[] cameras = Capture.list ();
   
@@ -37,11 +36,6 @@ void setup () {
 }
 
 void draw () {
-  
-  background (255, 255, 255);
-  
-  // Apply an effect to the frame.
-  // tint (255, 20);
 
   if (isCapturingSample) {
     if (camera.available()) {

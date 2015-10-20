@@ -1,11 +1,10 @@
 // Audio Sampler
-//
 // Demo for "Connected Expression" Masterclass
 // http://deviceofmind.net/blik/
 //
-// Built by Michael Gubbels
-// 
 // "You get crazy beats with it." - Maarten Lamers
+//
+// Code by @mokogobo
 
 import ddf.minim.*;
 
@@ -15,7 +14,7 @@ AudioRecorder recorder;
 AudioPlayer player;
 String timestamp;
 
-ArrayList<String> samples = new ArrayList<String>();
+ArrayList<String> samples = new ArrayList<String> ();
 int currentSample = -1;
 int backgroundColor = color (255, 255, 255);
 
@@ -96,7 +95,7 @@ void keyReleased () {
     } else {
       
       // Create recorder with name equal to the current time formatted like "2015_10_17_12_48_28".
-      timestamp = String.valueOf(year()) + "_" + String.valueOf(month()) + "_" + String.valueOf(day()) + "_" + String.valueOf(hour()) + "_" + String.valueOf(minute()) + "_" + String.valueOf(second());
+      timestamp = String.valueOf (year ()) + "_" + String.valueOf (month ()) + "_" + String.valueOf (day ()) + "_" + String.valueOf (hour ()) + "_" + String.valueOf (minute ()) + "_" + String.valueOf (second ());
       recorder = minim.createRecorder(in, timestamp + ".wav");
   
       // Start recording
