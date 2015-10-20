@@ -10,12 +10,13 @@ ArrayList<String> samples = new ArrayList<String>();
 int currentSample = -1;
 int currentFrame = 0;
 boolean isCapturingSample = false;
-boolean isPlayingSample = false;
+int videoFramesPerSecond = 30;
 
 void setup () {
   
   frame.setTitle ("Video Sampler");
   size (640, 480); // size (640, 320, P3D);
+  frameRate (videoFramesPerSecond);
 
   String[] cameras = Capture.list ();
   
@@ -32,33 +33,27 @@ void setup () {
     
     // Select camera to serve as the video source.
     camera = new Capture (this, width, height); // camera = new Capture (this, 640, 480, "Built-in iSight", 30);
-  }      
+  }
 }
 
 void draw () {
+  
+  background (255, 255, 255);
+  
+  // Apply an effect to the frame.
+  // tint (255, 20);
 
   if (isCapturingSample) {
     if (camera.available()) {
-      camera.read();
-      camera.loadPixels();
-      //int threshold = 127; // Set the threshold value
-      //float pixelBrightness; // Declare variable to store a pixel's color
-      // Turn each pixel in the video frame black or white depending on its brightness
+      camera.read (); // Get the next frame from the camera.
+      camera.loadPixels ();
       loadPixels();
       int[] framePixels = new int[numPixels];
       for (int i = 0; i < numPixels; i++) {
-        //pixelBrightness = brightness(camera.pixels[i]);
-        //if (pixelBrightness > threshold) { // If the pixel is brighter than the
-        //  pixels[i] = color (255, 255, 255); // threshold value, make it white
-        //} 
-        //else { // Otherwise,
-        //  pixels[i] = color (0, 0, 0); // make it black
-        //}
-        
-        framePixels[i] = camera.pixels[i]; // Save the current pixel.
-        pixels[i] = framePixels[i];
+        framePixels[i] = camera.pixels[i]; // Save the current pixel from the camera.
+        pixels[i] = framePixels[i]; // Copy the pixel from the camera to the window.
       }
-      frames.add (framePixels);
+      frames.add (framePixels); // Save the frame in a list.
       println ("Added frame to video.");
       updatePixels();
     }
@@ -77,26 +72,21 @@ void draw () {
   }
 }
 
-void keyReleased ()
-{
-  if (key == ' ') 
-  {
+void keyReleased () {
+  if (key == ' ') {
     if (isCapturingSample) {
       
       camera.stop ();
-      
       isCapturingSample = false;
-      
       println("Stopped recording.");
+      
     } else {
+      
       // Create recorder with name equal to the current time formatted like "2015_10_17_12_48_28".
       timestamp = String.valueOf(year()) + "_" + String.valueOf(month()) + "_" + String.valueOf(day()) + "_" + String.valueOf(hour()) + "_" + String.valueOf(minute()) + "_" + String.valueOf(second());
-      
       camera.start();
       numPixels = camera.width * camera.height;
-      
       isCapturingSample = true;
-      
       println("Started recording.");
     }
   }
