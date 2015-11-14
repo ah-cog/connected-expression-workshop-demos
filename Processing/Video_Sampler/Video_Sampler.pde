@@ -6,7 +6,6 @@ int numPixels;
 String timestamp;
 
 ArrayList<int[]> frames = new ArrayList<int[]>();
-ArrayList<String> samples = new ArrayList<String>();
 int currentSample = -1;
 int currentFrame = 0;
 boolean isCapturingSample = false;

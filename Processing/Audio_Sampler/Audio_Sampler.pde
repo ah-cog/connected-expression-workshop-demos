@@ -16,7 +16,7 @@ String timestamp;
 
 ArrayList<String> samples = new ArrayList<String> ();
 int currentSample = -1;
-int backgroundColor = color (255, 255, 255);
+int backgroundColor = color (255, 255, 255);  
 
 void setup () {
   
